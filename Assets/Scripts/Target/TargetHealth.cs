@@ -1,11 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetHealth : MonoBehaviour
+public class TargetHealth
 {
     public float Value { get; private set; }
     public float Max { get; private set; }
+
+    public TargetHealth(float max)
+    {
+        Value = max;
+        Max = max;
+    }
 
     public void Add(float value)
     {

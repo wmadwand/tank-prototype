@@ -2,6 +2,6 @@ namespace TestingTask.Combat
 {
     public interface IDamageable
     {
-        void TakeDamage();
+        void TakeDamage(float value);
     }
 }

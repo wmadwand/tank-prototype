@@ -28,7 +28,7 @@ namespace TestingTask.Combat
                 return;
 
             RenderLaser(target.GetPosition());
-            damageTarget.TakeDamage();
+            damageTarget.TakeDamage(50);
             _nextShotTime = Time.time + SHOT_COOLDOWN;
         }
         

@@ -8,10 +8,13 @@ public class MovingTargetController : MonoBehaviour, IDamageable
 {
     [SF] private float m_movementTime = 1f;
     [SF] private Vector3 m_targetOffset;
-    
+
+    private TargetHealth _health;
+
     private void Awake()
     {
         StartCoroutine(MovementRoutine());
+        _health = new TargetHealth(100);
     }
 
     private IEnumerator MovementRoutine()
@@ -40,9 +43,14 @@ public class MovingTargetController : MonoBehaviour, IDamageable
         }
     }
     
-    public void TakeDamage()
+    public void TakeDamage(float value)
     {
-        
+        _health.Remove(value);
+
+        if (_health.Value <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public Vector3 GetPosition()
