@@ -11,9 +11,13 @@ namespace TestingTask.Player
         
         private float _xRotation;
         
-        private void Update()
+        private void FixedUpdate()
         {
             UpdatePosition();
+        }
+
+        private void Update()
+        {
             UpdateRotation();
         }
 
