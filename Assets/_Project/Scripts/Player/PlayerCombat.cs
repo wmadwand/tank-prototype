@@ -45,9 +45,9 @@ namespace TestingTask.Combat
             var laserLine = _playerController.LaserLine;
             laserLine.SetPosition(0, _shotPivot.position);
             laserLine.SetPosition(1, targetPosition);
-
+            
+            laserLine.enabled = true;
             //TODO: to inspector/scriptable settings
-            laserLine.enabled = true;            
             yield return new WaitForSeconds(0.1f);
             laserLine.enabled = false;
         }
