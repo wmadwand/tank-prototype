@@ -13,7 +13,8 @@ namespace TestingTask.Player
 
         [Header("Visuals")] 
         [SF] private Transform m_turret;
-        
+        [SF] private Transform m_shotPivot;
+
         [SF] private LineRenderer m_lineRenderer;
 
         public PlayerTargeting Targeting { private set; get; }
@@ -27,7 +28,7 @@ namespace TestingTask.Player
         {
             _rigidbody = GetComponent<Rigidbody>();
             Targeting = new PlayerTargeting(this);
-            Combat = new PlayerCombat();
+            Combat = new PlayerCombat(m_shotPivot);
         }
 
         private void Update()

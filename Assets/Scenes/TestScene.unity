@@ -805,6 +805,37 @@ Transform:
   - {fileID: 2093774248}
   m_Father: {fileID: 2147144159}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &511935752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 511935753}
+  m_Layer: 0
+  m_Name: ShotPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &511935753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511935752}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.19700003, z: 0.617}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 843742552}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &673569730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,6 +1806,7 @@ Transform:
   - {fileID: 739896122}
   - {fileID: 2144567635}
   - {fileID: 742829418}
+  - {fileID: 511935753}
   m_Father: {fileID: 1492698807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &843742553
@@ -3168,6 +3200,7 @@ MonoBehaviour:
   m_movementSpeed: 200
   m_rotationSpeed: 10
   m_turret: {fileID: 843742552}
+  m_shotPivot: {fileID: 511935753}
   m_lineRenderer: {fileID: 843742553}
 --- !u!65 &1492698805
 BoxCollider:

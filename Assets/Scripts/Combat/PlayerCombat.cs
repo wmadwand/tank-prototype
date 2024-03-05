@@ -12,10 +12,12 @@ namespace TestingTask.Combat
         private float _nextShotTime;
 
         private const float SHOT_COOLDOWN = 1f;
+        private Transform _shotPivot;
 
-        public PlayerCombat()
+        public PlayerCombat(Transform shotPivot)
         {
             _playerController = Object.FindObjectOfType<PlayerController>();
+            _shotPivot = shotPivot;
         }
 
         public void Shoot(ITargetable target)
@@ -41,12 +43,12 @@ namespace TestingTask.Combat
         private IEnumerator RenderLaserRoutine(Vector3 targetPosition)
         {
             var laserLine = _playerController.LaserLine;
-            laserLine.SetPosition(0, laserLine.transform.position);
+            laserLine.SetPosition(0, _shotPivot.position);
             laserLine.SetPosition(1, targetPosition);
-            laserLine.enabled = true;
 
+            //TODO: to inspector/scriptable settings
+            laserLine.enabled = true;            
             yield return new WaitForSeconds(0.1f);
-
             laserLine.enabled = false;
         }
 
