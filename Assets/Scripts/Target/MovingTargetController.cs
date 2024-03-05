@@ -4,7 +4,7 @@ using TestingTask.Combat;
 using UnityEngine;
 using SF = UnityEngine.SerializeField;
 
-public class MovingTargetController : MonoBehaviour, IDamageable
+public class MovingTargetController : MonoBehaviour, IDamageable, ITargetable
 {
     [SF] private float m_movementTime = 1f;
     [SF] private Vector3 m_targetOffset;

@@ -14,7 +14,7 @@ namespace TestingTask.Target
 
         public Vector3 GetPosition()
         {
-            return Vector3.zero;
+            return transform.position;
         }
 
         public void TakeDamage(float value)
