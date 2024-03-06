@@ -10,6 +10,8 @@ namespace TestingTask.Combat
         private readonly TargetCollection _targets;
         private readonly float _targetingRange = 10;
 
+        //--------------------------------------------------------------
+
         public PlayerTargeting(PlayerController playerController, float targetingRange, TargetCollection targets)
         {
             _playerController = playerController;
