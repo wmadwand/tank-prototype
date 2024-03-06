@@ -8,14 +8,13 @@ namespace TestingTask.Combat
 
         private readonly PlayerController _playerController;
         private readonly TargetCollection _targets;
+        private readonly float _targetingRange = 10;
 
-        private const float RANGE = 10;
-
-        public PlayerTargeting(PlayerController playerController, TargetCollection targets)
+        public PlayerTargeting(PlayerController playerController, float targetingRange, TargetCollection targets)
         {
             _playerController = playerController;
+            _targetingRange = targetingRange;
             _targets = targets;
-
         }
 
         public void Process(float deltaTime)
@@ -41,7 +40,7 @@ namespace TestingTask.Combat
                 CurrentTarget = null;
                 return;
             }
-            
+
             var playerPos = _playerController.TurretTransform.position;
             ITargetable closestTarget = null;
             var minDistance = float.MaxValue;
@@ -53,7 +52,7 @@ namespace TestingTask.Combat
                 }
 
                 var tempDistance = (_targets.Targets[i].GetPosition() - playerPos).sqrMagnitude;
-                if (tempDistance < RANGE * RANGE && tempDistance < minDistance)
+                if (tempDistance < _targetingRange * _targetingRange && tempDistance < minDistance)
                 {
                     closestTarget = _targets.Targets[i];
                     minDistance = tempDistance;

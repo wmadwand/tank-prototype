@@ -7,6 +7,10 @@ namespace TestingTask.Player
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : MonoBehaviour
     {
+        [Header("Dependencies")]
+        [SF] private Camera m_camera;
+        [SF] private TargetCollection m_targets;
+
         [Header("Movement")]
         [SF] private float m_movementSpeed;
         [SF] private float m_rotationSpeed;
@@ -14,9 +18,10 @@ namespace TestingTask.Player
         [Header("Visuals")]
         [SF] private Transform m_turret;
         [SF] private Transform m_shotPivot;
-
         [SF] private LineRenderer m_lineRenderer;
-        [SF] private TargetCollection m_targets;
+
+        [Header("Misc")]
+        [SF] private float m_targetingRange;
 
         public PlayerTargeting Targeting { private set; get; }
         public PlayerCombat Combat { private set; get; }
@@ -25,12 +30,17 @@ namespace TestingTask.Player
 
         private Rigidbody _rigidbody;
 
-        public Camera camera;
+        //TODO: test
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, 10);
+        }
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            Targeting = new PlayerTargeting(this, m_targets);
+            Targeting = new PlayerTargeting(this, m_targetingRange, m_targets);
             Combat = new PlayerCombat(m_shotPivot);
         }
 
@@ -75,7 +85,7 @@ namespace TestingTask.Player
 
         private void UpdateVelocity(float deltaTime)
         {
-            var cameraRight = camera.transform.right;
+            var cameraRight = m_camera.transform.right;
             var cameraForward = Vector3.Cross(cameraRight, Vector3.up).normalized;
             var movementDirection = (cameraRight * _input.x + cameraForward * _input.y).normalized;
             var newVelocity = movementDirection * m_movementSpeed * deltaTime;

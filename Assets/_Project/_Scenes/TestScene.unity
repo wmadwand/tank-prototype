@@ -3197,13 +3197,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71193c34a13374dfa84a001e6ca55f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 963194227}
+  m_targets: {fileID: 2147144160}
   m_movementSpeed: 200
   m_rotationSpeed: 10
   m_turret: {fileID: 843742552}
   m_shotPivot: {fileID: 511935753}
   m_lineRenderer: {fileID: 843742553}
-  m_targets: {fileID: 2147144160}
-  camera: {fileID: 963194227}
 --- !u!65 &1492698805
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4430,7 +4430,7 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1492698807}
   - {fileID: 1769524959}
+  - {fileID: 1492698807}
   - {fileID: 1729439186}
   - {fileID: 2147144159}
