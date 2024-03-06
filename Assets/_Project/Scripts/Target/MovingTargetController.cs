@@ -5,58 +5,61 @@ using TestingTask.Combat;
 using UnityEngine;
 using SF = UnityEngine.SerializeField;
 
-public class MovingTargetController : MonoBehaviour, IDamageable, ITargetable
+namespace TestingTask.Target
 {
-    [SF] private float m_movementTime = 1f;
-    [SF] private Vector3 m_targetOffset;
-
-    private IEntityiHealth _health;
-
-    private void Awake()
+    public class MovingTargetController : MonoBehaviour, IDamageable, ITargetable
     {
-        StartCoroutine(MovementRoutine());
-        _health = new TargetHealth(100);
-    }
+        [SF] private float m_movementTime = 1f;
+        [SF] private Vector3 m_targetOffset;
 
-    private IEnumerator MovementRoutine()
-    {
-        var origin = transform.position;
-        var targetPosition = origin + m_targetOffset;
-        var goingBack = false;
-        var passedTime = 0f;
+        private IEntityiHealth _health;
 
-        while (true)
+        private void Awake()
         {
-            passedTime += Time.deltaTime;
+            StartCoroutine(MovementRoutine());
+            _health = new TargetHealth(100);
+        }
 
-            if (passedTime >= m_movementTime)
+        private IEnumerator MovementRoutine()
+        {
+            var origin = transform.position;
+            var targetPosition = origin + m_targetOffset;
+            var goingBack = false;
+            var passedTime = 0f;
+
+            while (true)
             {
-                passedTime = 0f;
-                goingBack = !goingBack;
+                passedTime += Time.deltaTime;
+
+                if (passedTime >= m_movementTime)
+                {
+                    passedTime = 0f;
+                    goingBack = !goingBack;
+                }
+
+                var startPosition = goingBack ? targetPosition : origin;
+                var target = goingBack ? origin : targetPosition;
+                var normalisedTime = passedTime / m_movementTime;
+
+                transform.position = Vector3.Lerp(startPosition, target, normalisedTime);
+                yield return new WaitForEndOfFrame();
             }
-
-            var startPosition = goingBack ? targetPosition : origin;
-            var target = goingBack ? origin : targetPosition;
-            var normalisedTime = passedTime / m_movementTime;
-
-            transform.position = Vector3.Lerp(startPosition, target, normalisedTime);
-            yield return new WaitForEndOfFrame();
         }
-    }
 
-    public void TakeDamage(float value, Action<ITargetable> callback)
-    {
-        _health.Remove(value);
-
-        if (_health.Value <= 0)
+        public void TakeDamage(float value, Action<ITargetable> callback)
         {
-            callback?.Invoke(this);
-            Destroy(gameObject);
-        }
-    }
+            _health.Remove(value);
 
-    public Vector3 GetPosition()
-    {
-        return transform.position;
-    }
+            if (_health.Value <= 0)
+            {
+                callback?.Invoke(this);
+                Destroy(gameObject);
+            }
+        }
+
+        public Vector3 GetPosition()
+        {
+            return transform.position;
+        }
+    } 
 }

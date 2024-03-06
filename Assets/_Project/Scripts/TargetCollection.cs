@@ -3,47 +3,52 @@ using System.Collections.Generic;
 using TestingTask.Combat;
 using UnityEngine;
 
-public class TargetCollection : MonoBehaviour
+namespace TestingTask.Target.Collection
 {
-    private List<ITargetable> _targets;
-
-    private void Awake()
+    public class TargetCollection : MonoBehaviour
     {
-        _targets = new List<ITargetable>();
-        //TODO: use MVP + enemy factory + object pool + HashTables for the cache, etc 
-        GetComponentsInChildren(false, _targets);
-    }
+        private List<ITargetable> _targets;
 
-    public ITargetable GetClosest(Vector3 fromPoint, float targetingRange)
-    {
-        if (_targets.Count < 1)
+        private void Awake()
         {
-            //CurrentTarget = null;
-            return null;
+            _targets = new List<ITargetable>();
+            //TODO: use MVP + enemy factory + object pool + HashTables for the cache, etc 
+            GetComponentsInChildren(false, _targets);
         }
 
-        ITargetable closestTarget = null;
-        var minDistance = float.MaxValue;
-        for (int i = 0; i < _targets.Count; i++)
+        //TODO: greedy algorithm - good for prototype but too expensive for real game
+        // alternative - UnityEngine.Physics.SphereCastAll but expensive again
+        public ITargetable GetClosest(Vector3 fromPoint, float targetingRange)
         {
-            if (_targets[i] == null)
+            if (_targets.Count < 1)
             {
-                continue;
+                //CurrentTarget = null;
+                return null;
             }
 
-            var tempDistance = (_targets[i].GetPosition() - fromPoint).sqrMagnitude;
-            if (tempDistance < targetingRange * targetingRange && tempDistance < minDistance)
+            ITargetable closestTarget = null;
+            var minDistance = float.MaxValue;
+            for (int i = 0; i < _targets.Count; i++)
             {
-                closestTarget = _targets[i];
-                minDistance = tempDistance;
+                if (_targets[i] == null)
+                {
+                    continue;
+                }
+
+                var tempDistance = (_targets[i].GetPosition() - fromPoint).sqrMagnitude;
+                if (tempDistance < targetingRange * targetingRange && tempDistance < minDistance)
+                {
+                    closestTarget = _targets[i];
+                    minDistance = tempDistance;
+                }
             }
+
+            return closestTarget;
         }
 
-        return closestTarget;
-    }
-
-    public void Remove(ITargetable element)
-    {
-        _targets.Remove(element);
-    }
+        public void Remove(ITargetable element)
+        {
+            _targets.Remove(element);
+        }
+    } 
 }

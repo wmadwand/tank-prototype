@@ -1,34 +1,37 @@
 using UnityEngine;
 
-public interface IEntityiHealth
+namespace TestingTask.Target
 {
-    float Max { get; }
-    float Value { get; }
-
-    void Add(float value);
-    void Remove(float value);
-}
-
-public class TargetHealth : IEntityiHealth
-{
-    public float Value { get; private set; }
-    public float Max { get; private set; }
-
-    public TargetHealth(float max)
+    public interface IEntityiHealth
     {
-        Value = max;
-        Max = max;
+        float Max { get; }
+        float Value { get; }
+
+        void Add(float value);
+        void Remove(float value);
     }
 
-    public void Add(float value)
+    public class TargetHealth : IEntityiHealth
     {
-        Value = Mathf.Clamp(Value + value, 0, Max);
-    }
+        public float Value { get; private set; }
+        public float Max { get; private set; }
 
-    public void Remove(float value)
-    {
-        if (Value <= 0) { return; }
+        public TargetHealth(float max)
+        {
+            Value = max;
+            Max = max;
+        }
 
-        Value -= value;
-    }
+        public void Add(float value)
+        {
+            Value = Mathf.Clamp(Value + value, 0, Max);
+        }
+
+        public void Remove(float value)
+        {
+            if (Value <= 0) { return; }
+
+            Value -= value;
+        }
+    } 
 }

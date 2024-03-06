@@ -1,4 +1,5 @@
 using TestingTask.Player;
+using TestingTask.Target.Collection;
 
 namespace TestingTask.Combat
 {
@@ -33,34 +34,8 @@ namespace TestingTask.Combat
             playerTurret.LookAt(targetPosition);
         }
 
-        //TODO: greedy algorithm - good for prototype but too expensive for real game
-        // alternative - UnityEngine.Physics.SphereCastAll but expensive again
         public void FindClosestTarget()
-        {
-            //if (_targets.Targets.Count < 1)
-            //{
-            //    CurrentTarget = null;
-            //    return;
-            //}
-
-            //var playerPos = _playerController.TurretTransform.position;
-            //ITargetable closestTarget = null;
-            //var minDistance = float.MaxValue;
-            //for (int i = 0; i < _targets.Targets.Count; i++)
-            //{
-            //    if (_targets.Targets[i] == null)
-            //    {
-            //        continue;
-            //    }
-
-            //    var tempDistance = (_targets.Targets[i].GetPosition() - playerPos).sqrMagnitude;
-            //    if (tempDistance < _targetingRange * _targetingRange && tempDistance < minDistance)
-            //    {
-            //        closestTarget = _targets.Targets[i];
-            //        minDistance = tempDistance;
-            //    }
-            //}
-
+        {     
             CurrentTarget = _targets.GetClosest(_playerController.TurretTransform.position, _targetingRange);
         }
     }
