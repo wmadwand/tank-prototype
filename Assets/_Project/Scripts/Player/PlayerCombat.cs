@@ -22,7 +22,7 @@ namespace TestingTask.Combat
 
         public void Shoot(ITargetable target)
         {
-            if (CanShoot() == false)
+            if (CanShoot() == false || target == null)
                 return;
 
             var damageTarget = target.gameObject.GetComponent<IDamageable>();
@@ -45,7 +45,7 @@ namespace TestingTask.Combat
             var laserLine = _playerController.LaserLine;
             laserLine.SetPosition(0, _shotPivot.position);
             laserLine.SetPosition(1, targetPosition);
-            
+
             laserLine.enabled = true;
             //TODO: to inspector/scriptable settings
             yield return new WaitForSeconds(0.1f);

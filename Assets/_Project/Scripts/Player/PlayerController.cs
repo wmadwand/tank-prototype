@@ -16,6 +16,7 @@ namespace TestingTask.Player
         [SF] private Transform m_shotPivot;
 
         [SF] private LineRenderer m_lineRenderer;
+        [SF] private TargetCollection m_targets;
 
         public PlayerTargeting Targeting { private set; get; }
         public PlayerCombat Combat { private set; get; }
@@ -27,7 +28,7 @@ namespace TestingTask.Player
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            Targeting = new PlayerTargeting(this);
+            Targeting = new PlayerTargeting(this, m_targets);
             Combat = new PlayerCombat(m_shotPivot);
         }
 
