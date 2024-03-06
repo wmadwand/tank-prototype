@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TestingTask.Player;
@@ -16,11 +17,11 @@ namespace TestingTask.Combat
 
         public PlayerCombat(Transform shotPivot)
         {
-            _playerController = Object.FindObjectOfType<PlayerController>();
+            _playerController = UnityEngine.Object.FindObjectOfType<PlayerController>();
             _shotPivot = shotPivot;
         }
 
-        public void Shoot(ITargetable target)
+        public void Shoot(ITargetable target, Action<ITargetable> callback)
         {
             if (CanShoot() == false || target == null)
                 return;
@@ -30,7 +31,7 @@ namespace TestingTask.Combat
                 return;
 
             RenderLaser(target.GetPosition());
-            damageTarget.TakeDamage(50);
+            damageTarget.TakeDamage(50, callback);
             _nextShotTime = Time.time + SHOT_COOLDOWN;
         }
 

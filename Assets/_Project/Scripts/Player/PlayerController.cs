@@ -11,7 +11,7 @@ namespace TestingTask.Player
         [SF] private float m_movementSpeed;
         [SF] private float m_rotationSpeed;
 
-        [Header("Visuals")] 
+        [Header("Visuals")]
         [SF] private Transform m_turret;
         [SF] private Transform m_shotPivot;
 
@@ -22,7 +22,7 @@ namespace TestingTask.Player
         public PlayerCombat Combat { private set; get; }
         public Transform TurretTransform => m_turret;
         public LineRenderer LaserLine => m_lineRenderer;
-        
+
         private Rigidbody _rigidbody;
 
         private void Awake()
@@ -47,9 +47,14 @@ namespace TestingTask.Player
 
         private void UpdateCombat()
         {
-            Combat.Shoot(Targeting.CurrentTarget);
+            Combat.Shoot(Targeting.CurrentTarget, RemoveFromCollection);
         }
-        
+
+        private void RemoveFromCollection(ITargetable target)
+        {
+            m_targets.Targets.Remove(target);
+        }
+
         private Vector2 _input;
         private void UpdateInput()
         {
@@ -57,7 +62,7 @@ namespace TestingTask.Player
             var horizontalInput = Input.GetAxisRaw("Horizontal");
             _input = new Vector2(horizontalInput, verticalInput);
         }
-        
+
         private void FixedUpdate()
         {
             var deltaTime = Time.fixedDeltaTime;
@@ -70,7 +75,7 @@ namespace TestingTask.Player
             var movementDirection = new Vector3(_input.x, 0, _input.y).normalized;
             var newVelocity = movementDirection * m_movementSpeed * deltaTime;
             newVelocity.y = _rigidbody.velocity.y;
-            
+
             _rigidbody.velocity = newVelocity;
         }
 
@@ -79,10 +84,10 @@ namespace TestingTask.Player
             var velocityDirection = _rigidbody.velocity.normalized;
             if (velocityDirection == Vector3.zero || velocityDirection.magnitude <= 0.01f)
                 return;
-            
+
             var targetForward = Vector3.Lerp(transform.forward, velocityDirection, m_rotationSpeed * deltaTime);
             targetForward.y = 0f;
-            
+
             transform.forward = targetForward;
         }
     }

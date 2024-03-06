@@ -15,6 +15,7 @@ namespace TestingTask.Combat
         {
             _playerController = playerController;
             _targets = targets;
+
         }
 
         public void Process(float deltaTime)

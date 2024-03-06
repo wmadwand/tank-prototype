@@ -1,3 +1,4 @@
+using System;
 using TestingTask.Combat;
 using UnityEngine;
 
@@ -17,12 +18,13 @@ namespace TestingTask.Target
             return transform.position;
         }
 
-        public void TakeDamage(float value)
+        public void TakeDamage(float value, Action<ITargetable> callback)
         {
             _health.Remove(value);
 
             if (_health.Value <= 0)
             {
+                callback?.Invoke(this);                
                 Destroy(gameObject);
             }
         }
