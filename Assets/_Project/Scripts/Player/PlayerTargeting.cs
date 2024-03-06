@@ -37,31 +37,31 @@ namespace TestingTask.Combat
         // alternative - UnityEngine.Physics.SphereCastAll but expensive again
         public void FindClosestTarget()
         {
-            if (_targets.Targets.Count < 1)
-            {
-                CurrentTarget = null;
-                return;
-            }
+            //if (_targets.Targets.Count < 1)
+            //{
+            //    CurrentTarget = null;
+            //    return;
+            //}
 
-            var playerPos = _playerController.TurretTransform.position;
-            ITargetable closestTarget = null;
-            var minDistance = float.MaxValue;
-            for (int i = 0; i < _targets.Targets.Count; i++)
-            {
-                if (_targets.Targets[i] == null)
-                {
-                    continue;
-                }
+            //var playerPos = _playerController.TurretTransform.position;
+            //ITargetable closestTarget = null;
+            //var minDistance = float.MaxValue;
+            //for (int i = 0; i < _targets.Targets.Count; i++)
+            //{
+            //    if (_targets.Targets[i] == null)
+            //    {
+            //        continue;
+            //    }
 
-                var tempDistance = (_targets.Targets[i].GetPosition() - playerPos).sqrMagnitude;
-                if (tempDistance < _targetingRange * _targetingRange && tempDistance < minDistance)
-                {
-                    closestTarget = _targets.Targets[i];
-                    minDistance = tempDistance;
-                }
-            }
+            //    var tempDistance = (_targets.Targets[i].GetPosition() - playerPos).sqrMagnitude;
+            //    if (tempDistance < _targetingRange * _targetingRange && tempDistance < minDistance)
+            //    {
+            //        closestTarget = _targets.Targets[i];
+            //        minDistance = tempDistance;
+            //    }
+            //}
 
-            CurrentTarget = closestTarget;
+            CurrentTarget = _targets.GetClosest(_playerController.TurretTransform.position, _targetingRange);
         }
     }
 }

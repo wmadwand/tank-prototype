@@ -5,17 +5,45 @@ using UnityEngine;
 
 public class TargetCollection : MonoBehaviour
 {
-    public List<ITargetable> Targets { get; private set; }
+    private List<ITargetable> _targets;
 
     private void Awake()
     {
-        Targets = new List<ITargetable>();
+        _targets = new List<ITargetable>();
         //TODO: use MVP + enemy factory + object pool + HashTables for the cache, etc 
-        GetComponentsInChildren(false, Targets);
+        GetComponentsInChildren(false, _targets);
+    }
+
+    public ITargetable GetClosest(Vector3 fromPoint, float targetingRange)
+    {
+        if (_targets.Count < 1)
+        {
+            //CurrentTarget = null;
+            return null;
+        }
+
+        ITargetable closestTarget = null;
+        var minDistance = float.MaxValue;
+        for (int i = 0; i < _targets.Count; i++)
+        {
+            if (_targets[i] == null)
+            {
+                continue;
+            }
+
+            var tempDistance = (_targets[i].GetPosition() - fromPoint).sqrMagnitude;
+            if (tempDistance < targetingRange * targetingRange && tempDistance < minDistance)
+            {
+                closestTarget = _targets[i];
+                minDistance = tempDistance;
+            }
+        }
+
+        return closestTarget;
     }
 
     public void Remove(ITargetable element)
     {
-        Targets.Remove(element);
+        _targets.Remove(element);
     }
 }

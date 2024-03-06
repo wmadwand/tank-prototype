@@ -32,12 +32,14 @@ namespace TestingTask.Player
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, 10);
+            Gizmos.DrawWireSphere(transform.position, m_targetingRange);
         }
 
         private void Awake()
         {
             _movement = GetComponent<PlayerMovement>();
+            
+            //TODO: circular dependecies should be avoided
             Targeting = new PlayerTargeting(this, m_targetingRange, m_targets);
             Combat = new PlayerCombat(m_shotPivot);
         }
