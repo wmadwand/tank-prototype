@@ -47,8 +47,9 @@ namespace TestingTask.Combat
             laserLine.SetPosition(0, _shotPivot.position);
             laserLine.SetPosition(1, targetPosition);
 
+            //TODO: not the best approach
             laserLine.enabled = true;
-            //TODO: to inspector/scriptable settings
+            //TODO: to inspector/scriptable settings - no magic numbers
             yield return new WaitForSeconds(0.1f);
             laserLine.enabled = false;
         }

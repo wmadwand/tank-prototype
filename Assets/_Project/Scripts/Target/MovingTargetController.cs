@@ -46,6 +46,24 @@ namespace TestingTask.Target
             }
         }
 
+        public float amplitude = 5;
+        public float phase = 2;
+        public float period = 1;
+
+        private IEnumerator MovementSinRoutine()
+        {
+            var originPos = transform.localPosition;
+
+            while (true)
+            {
+                var offsePos = originPos;                
+                offsePos.x = Vector3.zero.x + amplitude * Mathf.Sin(2 * Mathf.PI * (phase + Time.timeSinceLevelLoad / period));
+                transform.localPosition = offsePos;
+
+                yield return new WaitForEndOfFrame();
+            }
+        }
+
         public void TakeDamage(float value, Action<ITargetable> callback)
         {
             _health.Remove(value);
@@ -61,5 +79,5 @@ namespace TestingTask.Target
         {
             return transform.position;
         }
-    } 
+    }
 }

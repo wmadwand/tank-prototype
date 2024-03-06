@@ -393,6 +393,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_movementTime: 3
   m_targetOffset: {x: 4, y: 0, z: 0}
+  amplitude: 0
+  phase: 0
+  period: 0
 --- !u!65 &100210471
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -513,6 +516,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_movementTime: 1
   m_targetOffset: {x: 4, y: 0, z: 0}
+  amplitude: 3
+  phase: 1
+  period: 1
 --- !u!65 &143928570
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1082,6 +1088,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_movementTime: 1
   m_targetOffset: {x: 4, y: 0, z: 0}
+  amplitude: 0
+  phase: 0
+  period: 0
 --- !u!65 &724352930
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1687,6 +1696,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_movementTime: 0.5
   m_targetOffset: {x: 4, y: 0, z: 0}
+  amplitude: 0
+  phase: 0
+  period: 0
 --- !u!65 &816112531
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2157,6 +2169,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_movementTime: 2
   m_targetOffset: {x: 4, y: 0, z: 0}
+  amplitude: 0
+  phase: 0
+  period: 0
 --- !u!65 &1098957010
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2737,6 +2752,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_movementTime: 2
   m_targetOffset: {x: 4, y: 0, z: 0}
+  amplitude: 0
+  phase: 0
+  period: 0
 --- !u!65 &1275118216
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2975,6 +2993,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_movementTime: 0.5
   m_targetOffset: {x: 4, y: 0, z: 0}
+  amplitude: 0
+  phase: 0
+  period: 0
 --- !u!65 &1341836065
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4224,6 +4245,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_movementTime: 3
   m_targetOffset: {x: 4, y: 0, z: 0}
+  amplitude: 0
+  phase: 0
+  period: 0
 --- !u!65 &2093774245
 BoxCollider:
   m_ObjectHideFlags: 0
