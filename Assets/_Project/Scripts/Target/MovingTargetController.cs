@@ -10,7 +10,7 @@ public class MovingTargetController : MonoBehaviour, IDamageable, ITargetable
     [SF] private float m_movementTime = 1f;
     [SF] private Vector3 m_targetOffset;
 
-    private TargetHealth _health;
+    private IEntityiHealth _health;
 
     private void Awake()
     {

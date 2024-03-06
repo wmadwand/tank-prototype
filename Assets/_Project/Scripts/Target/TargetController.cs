@@ -6,7 +6,7 @@ namespace TestingTask.Target
 {
     public class TargetController : MonoBehaviour, ITargetable, IDamageable
     {
-        private TargetHealth _health;
+        private IEntityiHealth _health;
 
         private void Awake()
         {

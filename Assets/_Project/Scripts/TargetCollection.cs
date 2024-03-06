@@ -10,7 +10,12 @@ public class TargetCollection : MonoBehaviour
     private void Awake()
     {
         Targets = new List<ITargetable>();
-        //TODO: use MVP + HashTables for the cache, etc 
+        //TODO: use MVP + enemy factory + object pool + HashTables for the cache, etc 
         GetComponentsInChildren(false, Targets);
+    }
+
+    public void Remove(ITargetable element)
+    {
+        Targets.Remove(element);
     }
 }

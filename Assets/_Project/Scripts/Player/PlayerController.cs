@@ -60,12 +60,7 @@ namespace TestingTask.Player
         private void UpdateCombat()
         {
             //TODO: not quite elegant - RemoveFromCollection callback
-            Combat.Shoot(Targeting.CurrentTarget, RemoveFromCollection);
-        }
-
-        private void RemoveFromCollection(ITargetable target)
-        {
-            m_targets.Targets.Remove(target);
+            Combat.Shoot(Targeting.CurrentTarget, m_targets.Remove);
         }
 
         private Vector2 _input;

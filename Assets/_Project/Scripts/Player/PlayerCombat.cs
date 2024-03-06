@@ -9,11 +9,11 @@ namespace TestingTask.Combat
     public class PlayerCombat
     {
         private readonly PlayerController _playerController;
-
         private float _nextShotTime;
+        private Transform _shotPivot;
 
         private const float SHOT_COOLDOWN = 1f;
-        private Transform _shotPivot;
+        private const float SHOT_DAMAGE = 50f;
 
         public PlayerCombat(Transform shotPivot)
         {
@@ -31,7 +31,7 @@ namespace TestingTask.Combat
                 return;
 
             RenderLaser(target.GetPosition());
-            damageTarget.TakeDamage(50, onTargetDeath);
+            damageTarget.TakeDamage(SHOT_DAMAGE, onTargetDeath);
             _nextShotTime = Time.time + SHOT_COOLDOWN;
         }
 
