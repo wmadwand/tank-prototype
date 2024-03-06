@@ -3203,6 +3203,7 @@ MonoBehaviour:
   m_shotPivot: {fileID: 511935753}
   m_lineRenderer: {fileID: 843742553}
   m_targets: {fileID: 2147144160}
+  camera: {fileID: 963194227}
 --- !u!65 &1492698805
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -25,6 +25,8 @@ namespace TestingTask.Player
 
         private Rigidbody _rigidbody;
 
+        public Camera camera;
+
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
@@ -47,6 +49,7 @@ namespace TestingTask.Player
 
         private void UpdateCombat()
         {
+            //TODO: not quite elegant - RemoveFromCollection callback
             Combat.Shoot(Targeting.CurrentTarget, RemoveFromCollection);
         }
 
@@ -72,7 +75,9 @@ namespace TestingTask.Player
 
         private void UpdateVelocity(float deltaTime)
         {
-            var movementDirection = new Vector3(_input.x, 0, _input.y).normalized;
+            var cameraRight = camera.transform.right;
+            var cameraForward = Vector3.Cross(cameraRight, Vector3.up).normalized;
+            var movementDirection = (cameraRight * _input.x + cameraForward * _input.y).normalized;
             var newVelocity = movementDirection * m_movementSpeed * deltaTime;
             newVelocity.y = _rigidbody.velocity.y;
 

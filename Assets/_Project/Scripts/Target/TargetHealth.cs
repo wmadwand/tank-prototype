@@ -1,6 +1,15 @@
 using UnityEngine;
 
-public class TargetHealth
+public interface ITargetHealth
+{
+    float Max { get; }
+    float Value { get; }
+
+    void Add(float value);
+    void Remove(float value);
+}
+
+public class TargetHealth : ITargetHealth
 {
     public float Value { get; private set; }
     public float Max { get; private set; }

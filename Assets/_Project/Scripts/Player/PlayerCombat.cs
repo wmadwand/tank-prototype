@@ -21,7 +21,7 @@ namespace TestingTask.Combat
             _shotPivot = shotPivot;
         }
 
-        public void Shoot(ITargetable target, Action<ITargetable> callback)
+        public void Shoot(ITargetable target, Action<ITargetable> onTargetDeath)
         {
             if (CanShoot() == false || target == null)
                 return;
@@ -31,7 +31,7 @@ namespace TestingTask.Combat
                 return;
 
             RenderLaser(target.GetPosition());
-            damageTarget.TakeDamage(50, callback);
+            damageTarget.TakeDamage(50, onTargetDeath);
             _nextShotTime = Time.time + SHOT_COOLDOWN;
         }
 

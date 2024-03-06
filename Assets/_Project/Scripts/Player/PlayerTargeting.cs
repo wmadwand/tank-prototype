@@ -33,6 +33,7 @@ namespace TestingTask.Combat
         }
 
         //TODO: greedy algorithm - good for prototype but too expensive for real game
+        // alternative - UnityEngine.Physics.SphereCastAll but expensive again
         public void FindClosestTarget()
         {
             if (_targets.Targets.Count < 1)
@@ -40,7 +41,7 @@ namespace TestingTask.Combat
                 CurrentTarget = null;
                 return;
             }
-
+            
             var playerPos = _playerController.TurretTransform.position;
             ITargetable closestTarget = null;
             var minDistance = float.MaxValue;
