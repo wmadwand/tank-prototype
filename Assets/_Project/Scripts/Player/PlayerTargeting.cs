@@ -9,6 +9,8 @@ namespace TestingTask.Combat
         private readonly PlayerController _playerController;
         private readonly TargetCollection _targets;
 
+        private const float RANGE = 10;
+
         public PlayerTargeting(PlayerController playerController, TargetCollection targets)
         {
             _playerController = playerController;
@@ -43,15 +45,24 @@ namespace TestingTask.Combat
             var closestTargetDistance = (closestTarget.GetPosition() - playerPos).sqrMagnitude;
             for (int i = 0; i < _targets.Targets.Count; i++)
             {
+                if (_targets.Targets[i] == null)
+                {
+                    continue;
+                }
+
                 var tempDistance = (_targets.Targets[i].GetPosition() - playerPos).sqrMagnitude;
-                if (tempDistance < closestTargetDistance)
+                if (tempDistance < RANGE * RANGE && tempDistance < closestTargetDistance)
                 {
                     closestTarget = _targets.Targets[i];
                     closestTargetDistance = tempDistance;
                 }
             }
 
-            CurrentTarget = closestTarget;
+            if (closestTargetDistance < RANGE * RANGE)
+            {
+                CurrentTarget = closestTarget;
+            }
+            
             //_targets.Targets.Remove(closestTarget);
         }
     }
