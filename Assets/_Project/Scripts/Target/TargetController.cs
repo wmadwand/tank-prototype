@@ -24,7 +24,7 @@ namespace TestingTask.Target
 
             if (_health.Value <= 0)
             {
-                callback?.Invoke(this);                
+                callback?.Invoke(this);
                 Destroy(gameObject);
             }
         }

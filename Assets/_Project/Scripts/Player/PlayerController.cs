@@ -17,9 +17,6 @@ namespace TestingTask.Player
         [SF] private Transform m_shotPivot;
         [SF] private LineRenderer m_lineRenderer;
 
-        [Header("Misc")]
-        [SF] private float m_targetingRange;
-
         public PlayerTargeting Targeting { private set; get; }
         public PlayerCombat Combat { private set; get; }
         public Transform TurretTransform => m_turret;
@@ -29,19 +26,12 @@ namespace TestingTask.Player
 
         //--------------------------------------------------------------
 
-        //TODO: test
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, m_targetingRange);
-        }
-
         private void Awake()
         {
             _movement = GetComponent<PlayerMovement>();
-            
+
             //TODO: circular dependecies should be avoided
-            Targeting = new PlayerTargeting(this, m_targetingRange, m_targets);
+            Targeting = new PlayerTargeting(this, m_targets);
             Combat = new PlayerCombat(m_shotPivot);
         }
 

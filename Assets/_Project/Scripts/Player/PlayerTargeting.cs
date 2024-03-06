@@ -9,14 +9,12 @@ namespace TestingTask.Combat
 
         private readonly PlayerController _playerController;
         private readonly TargetCollection _targets;
-        private readonly float _targetingRange = 10;
 
         //--------------------------------------------------------------
 
-        public PlayerTargeting(PlayerController playerController, float targetingRange, TargetCollection targets)
+        public PlayerTargeting(PlayerController playerController, TargetCollection targets)
         {
             _playerController = playerController;
-            _targetingRange = targetingRange;
             _targets = targets;
         }
 
@@ -35,8 +33,8 @@ namespace TestingTask.Combat
         }
 
         public void FindClosestTarget()
-        {     
-            CurrentTarget = _targets.GetClosest(_playerController.TurretTransform.position, _targetingRange);
+        {
+            CurrentTarget = _targets.GetClosest(_playerController.TurretTransform.position);
         }
     }
 }

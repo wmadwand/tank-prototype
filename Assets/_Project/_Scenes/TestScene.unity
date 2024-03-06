@@ -3202,7 +3202,6 @@ MonoBehaviour:
   m_turret: {fileID: 843742552}
   m_shotPivot: {fileID: 511935753}
   m_lineRenderer: {fileID: 843742553}
-  m_targetingRange: 10
 --- !u!65 &1492698805
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4440,6 +4439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f1458b085507542879cd07ede241b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _targetingRange: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
