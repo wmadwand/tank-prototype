@@ -42,8 +42,8 @@ namespace TestingTask.Combat
             }
 
             var playerPos = _playerController.TurretTransform.position;
-            var closestTarget = _targets.Targets[0];
-            var closestTargetDistance = (closestTarget.GetPosition() - playerPos).sqrMagnitude;
+            ITargetable closestTarget = null;
+            var minDistance = float.MaxValue;
             for (int i = 0; i < _targets.Targets.Count; i++)
             {
                 if (_targets.Targets[i] == null)
@@ -52,19 +52,14 @@ namespace TestingTask.Combat
                 }
 
                 var tempDistance = (_targets.Targets[i].GetPosition() - playerPos).sqrMagnitude;
-                if (tempDistance < RANGE * RANGE && tempDistance < closestTargetDistance)
+                if (tempDistance < RANGE * RANGE && tempDistance < minDistance)
                 {
                     closestTarget = _targets.Targets[i];
-                    closestTargetDistance = tempDistance;
+                    minDistance = tempDistance;
                 }
             }
 
-            if (closestTargetDistance < RANGE * RANGE)
-            {
-                CurrentTarget = closestTarget;
-            }
-            
-            //_targets.Targets.Remove(closestTarget);
+            CurrentTarget = closestTarget;
         }
     }
 }
