@@ -27,7 +27,7 @@ namespace TestingTask.Player
             var cameraRight = m_camera.transform.right;
             var cameraForward = Vector3.Cross(cameraRight, Vector3.up).normalized;
             var movementDirection = (cameraRight * _input.x + cameraForward * _input.y).normalized;
-            var newVelocity = movementDirection * m_movementSpeed * deltaTime;
+            var newVelocity = movementDirection * (m_movementSpeed * deltaTime);
             newVelocity.y = _rigidbody.velocity.y;
 
             _rigidbody.velocity = newVelocity;
